@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>会話 - 恋愛RPG</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/story.css">
+</head>
+<body class="page-story page-talk">
+  <!--
+    キャラクターとの会話画面(1つのHTMLを、進行ステップによって使い分ける)
+    ・talk-before   : 戦闘前の会話        → 終了後 battle.html
+    ・talk-after    : 戦闘後の会話        → 失敗なら gameover.html / 成功なら map.html(ラスボス成功時は talk-epilogue)
+    ・talk-epilogue : ラスボス成功後の会話 → 終了後 clear.html
+    ・会話文は js/data/characters.js の各キャラの talk(未提供のため空欄)
+  -->
+  <main class="viewport">
+    <div class="stage stage--classroom" id="stage">
+      <div class="pill pill--timer" id="timer">00:00:00</div>
+
+      <div class="character">
+        <!-- キャラクター画像。パスは js/data/characters.js で設定する(src は js が設定。未設定なら表示しない) -->
+        <img class="character__img" id="character-image" alt="" hidden>
+        <div class="character__placeholder" id="character-placeholder">キャラクター画像 未設定</div>
+      </div>
+
+      <div class="msgbox" id="msgbox">
+        <p class="msgbox__text" id="msg-text"></p>
+        <span class="msgbox__next" aria-hidden="true">▽</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/data/characters.js"></script>
+  <script src="js/data/scenario.js"></script>
+  <script src="js/core/util.js"></script>
+  <script src="js/core/characters.js"></script>
+  <script src="js/core/state.js"></script>
+  <script src="js/core/timer.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/dialogue.js"></script>
+  <script src="js/pages/talk.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/*
+ * css/result.css ― 敗北画面(gameover.html)とクリア画面(clear.html)
+ * この2画面はFigmaにデザインがないため、タイトル画面と同じ配色で作った仮のレイアウトです。
+ */
+.page-result .stage { background: var(--color-cream); }
+
+.result-heading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--u) * 14);
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: calc(var(--u) * 8);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.page-clear .result-heading { color: var(--color-logo); }
+.page-gameover .result-heading { color: var(--color-sub); }
+
+.result-text {
+  position: absolute;
+  left: calc(var(--u) * 10);
+  right: calc(var(--u) * 10);
+  top: calc(var(--u) * 30);
+  margin: 0;
+  text-align: center;
+  font-weight: 800;
+  font-size: calc(var(--u) * 3.8);
+  line-height: 1.5;
+  color: var(--color-text-msg);
+  word-break: break-word;
+}
+
+.result-back {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--u) * 46);
+  transform: translateX(-50%);
+  width: calc(var(--u) * 30);
+  height: calc(var(--u) * 5.25);
+  font-size: calc(var(--u) * 3.4);
+  background: var(--color-pink-soft);
+  border-color: var(--color-logo);
+}
+.result-back:active { transform: translateX(-50%) scale(0.97); }

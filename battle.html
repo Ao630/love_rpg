@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>戦闘 - 恋愛RPG</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/battle.css">
+</head>
+<body class="page-battle">
+  <!--
+    戦闘画面
+    ・表示条件: 進行ステップが battle のとき
+    ・「降参」           → index.html(タイトル画面。進行状態とタイマーを破棄)
+    ・「アタックする！」 → 好感度ゲージ(MAX後は告白成功率)を上げる
+    ・「告白しろ！！！」 → 好感度MAX後に表示。押すと一度だけ成否を判定し、talk.html(戦闘後の会話)へ
+    ・ゲームのルールは js/core/battle-logic.js、画面の更新は js/pages/battle.js
+  -->
+  <main class="viewport">
+    <div class="stage stage--classroom" id="stage">
+      <button id="btn-surrender" class="pill pill--surrender" type="button">降参</button>
+      <div class="pill pill--stage" id="stage-label"></div>
+      <div class="pill pill--timer" id="timer">00:00:00</div>
+
+      <!-- 左: ハートと縦型の好感度ゲージ -->
+      <div class="heart" aria-hidden="true">
+        <svg viewBox="0 0 32 28" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 27C-6 11 4 -2 16 6.5 28 -2 38 11 16 27Z" fill="#ef6aa6"/>
+        </svg>
+      </div>
+      <div class="gauge" id="gauge" role="progressbar" aria-label="好感度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="gauge__fill" id="gauge-fill"></div>
+      </div>
+
+      <!-- 中央: キャラクター画像(パスは js/data/characters.js で設定。未設定なら表示しない) -->
+      <div class="character">
+        <img class="character__img" id="character-image" alt="" hidden>
+        <div class="character__placeholder" id="character-placeholder">キャラクター画像 未設定</div>
+      </div>
+
+      <!-- 右: 告白成功率(好感度MAXになってから表示) -->
+      <div class="rate" id="rate-panel" hidden>
+        <div class="rate__label">告白成功率</div>
+        <div><span class="rate__value" id="rate-value">0</span><span class="rate__unit">%</span></div>
+      </div>
+
+      <!-- 下部: セリフ欄(セリフは js/data/characters.js の lines。未設定なら空欄) -->
+      <div class="msgbox" id="msgbox">
+        <p class="msgbox__text" id="msg-text"></p>
+      </div>
+
+      <div class="action-bar">
+        <button id="btn-attack" class="btn btn-action" type="button">アタックする！</button>
+        <button id="btn-confess" class="btn btn-action btn-action--confess" type="button" hidden>告白しろ！！！</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/data/characters.js"></script>
+  <script src="js/data/scenario.js"></script>
+  <script src="js/core/util.js"></script>
+  <script src="js/core/characters.js"></script>
+  <script src="js/core/state.js"></script>
+  <script src="js/core/timer.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/audio.js"></script>
+  <script src="js/core/battle-logic.js"></script>
+  <script src="js/pages/battle.js"></script>
+</body>
+</html>

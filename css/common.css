@@ -1,0 +1,145 @@
+/*
+ * css/common.css ― 全ページ共通の見た目(色・フォント・画面枠・ボタン・ピル型表示)
+ *
+ * 【サイズの考え方】
+ *   ゲーム画面は「横:縦 = 1.548 : 1」(Figmaのフレーム比率)の固定比率で、画面に収まる最大サイズに拡大縮小される。
+ *   --u は「ゲーム画面の幅の 1/100」で、すべての寸法を calc(var(--u) * 数値) で指定している。
+ *   → PCでもスマートフォンでも、レイアウトが崩れず同じ見た目で拡大縮小される。
+ *
+ * 【色について】
+ *   下の色コードは、Figmaのスクリーンショットから目視で推定した値です(Figmaから正確な値は取得できていません)。
+ *   色を変えたいときは、この :root の値だけを書き換えてください。
+ */
+:root {
+  --ratio: 1.548;
+  --u: min(1vw, calc(var(--ratio) * 1vh));
+
+  /* ---- 色(推定値) ---- */
+  --color-outer: #2b2030;          /* ゲーム画面の外側(余白部分) */
+  --color-cream: #fff6f0;          /* タイトル等のクリーム色の背景 */
+  --color-logo: #b8658e;           /* タイトルロゴのピンク */
+  --color-sub: #8a6078;            /* サブタイトル */
+  --color-ink: #2e1a47;            /* ボタン文字などの濃い紫 */
+  --color-text-msg: #4a2d5c;       /* セリフ欄の文字 */
+  --color-pink: #ee7aae;           /* ゲージのピンク */
+  --color-pink-strong: #e2478f;    /* 強調のピンク(成功率の数字など) */
+  --color-pink-soft: #fae6ef;      /* スタートボタンの背景 */
+  --color-pink-line: #f4b6d2;      /* 枠線のピンク */
+  --color-danger: #e0302f;         /* 「降参」の赤 */
+  --color-pill-bg: #fff5f8;        /* ピル型表示・ボタンの白に近い背景 */
+  --color-msg-bg: rgba(255, 236, 244, 0.74); /* 半透明のセリフ欄 */
+
+  /* ---- フォント(外部サービスに頼らず、端末にあるフォントを順に使う) ---- */
+  --font-ui: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", "Noto Sans JP", sans-serif;
+  --font-serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+}
+
+@supports (height: 1dvh) {
+  :root { --u: min(1vw, calc(var(--ratio) * 1dvh)); }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* hidden 属性を、他のCSS(display指定)に負けないようにする */
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-outer);
+  font-family: var(--font-ui);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ゲーム画面を中央に置く外枠 */
+.viewport {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ゲーム画面本体(固定比率) */
+.stage {
+  position: relative;
+  width: calc(var(--u) * 100);
+  height: calc(var(--u) * 100 / var(--ratio));
+  overflow: hidden;
+  background: var(--color-cream);
+}
+
+/* 教室背景(戦闘・会話・導入)。背景素材が未設定のときは、素材の代わりにならない単色のグラデーション */
+.stage--classroom {
+  background: linear-gradient(180deg, #f5dcdc 0%, #efc8cb 62%, #deb4a0 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* 縦向きのスマートフォン向けの案内(横向きのほうが大きく表示される) */
+@media (orientation: portrait) {
+  body::after {
+    content: "横向きにすると大きく表示されます";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+  }
+}
+
+/* ---- ピル型の表示(降参・ステージ・タイマー) ---- */
+.pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-pill-bg);
+  border: calc(var(--u) * 0.18) solid var(--color-pink-line);
+  border-radius: 999px;
+  box-shadow: 0 calc(var(--u) * 0.2) calc(var(--u) * 0.6) rgba(120, 60, 90, 0.15);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: calc(var(--u) * 1.9);
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.pill--timer {
+  right: calc(var(--u) * 2.84);
+  width: calc(var(--u) * 12.5);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- ボタンの共通部分 ---- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-weight: 800;
+  color: var(--color-ink);
+  background: var(--color-pill-bg);
+  border: calc(var(--u) * 0.18) solid var(--color-pink-line);
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation; /* ダブルタップ拡大を防ぎ、連打の反応を速くする */
+  transition: transform 0.08s ease-out, filter 0.15s;
+}
+.btn:hover { filter: brightness(0.98); }
+.btn:active { transform: scale(0.97); }
+.btn:focus-visible { outline: calc(var(--u) * 0.3) solid var(--color-logo); outline-offset: calc(var(--u) * 0.2); }
+.btn:disabled { cursor: default; filter: grayscale(0.3) opacity(0.85); transform: none; }

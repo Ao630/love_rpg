@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>告白失敗 - 恋愛RPG</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/result.css">
+</head>
+<body class="page-result page-gameover">
+  <!--
+    敗北画面
+    ・表示条件: 進行ステップが gameover のとき
+    ・一言コメントは js/data/scenario.js の defeatComments からランダムに1つ(未提供のため空欄=非表示)
+    ・「タイトルに戻る」 → index.html
+  -->
+  <main class="viewport">
+    <div class="stage">
+      <h1 class="result-heading">告白失敗...</h1>
+      <p class="result-text" id="defeat-comment" hidden></p>
+      <button id="btn-title" class="btn result-back" type="button">タイトルに戻る</button>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/data/characters.js"></script>
+  <script src="js/data/scenario.js"></script>
+  <script src="js/core/util.js"></script>
+  <script src="js/core/characters.js"></script>
+  <script src="js/core/state.js"></script>
+  <script src="js/pages/gameover.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>恋愛RPG</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/story.css">
+</head>
+<body class="page-story page-intro">
+  <!--
+    導入の独白
+    ・表示条件: 進行ステップが intro のとき(それ以外でアクセスすると正しい画面へ移動する)
+    ・文章は js/data/scenario.js の intro(未提供のため空欄)
+    ・最後のページを送り終えたら → map.html(ステージ移動画面)
+  -->
+  <main class="viewport">
+    <div class="stage stage--classroom" id="stage">
+      <div class="pill pill--timer" id="timer">00:00:00</div>
+      <div class="msgbox" id="msgbox">
+        <p class="msgbox__text" id="msg-text"></p>
+        <span class="msgbox__next" aria-hidden="true">▽</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/data/characters.js"></script>
+  <script src="js/data/scenario.js"></script>
+  <script src="js/core/util.js"></script>
+  <script src="js/core/characters.js"></script>
+  <script src="js/core/state.js"></script>
+  <script src="js/core/timer.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/dialogue.js"></script>
+  <script src="js/pages/intro.js"></script>
+</body>
+</html>

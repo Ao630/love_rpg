@@ -1,0 +1,121 @@
+/*
+ * css/battle.css ― 戦闘画面(battle.html)
+ * 位置・サイズはFigmaの「戦闘画面」のスクリーンショットから測った推定値(単位は --u = 画面幅の1/100)。
+ */
+
+/* 左上: 降参ボタン */
+.pill--surrender {
+  left: calc(var(--u) * 2.84);
+  top: calc(var(--u) * 2.84);
+  width: calc(var(--u) * 12.6);
+  height: calc(var(--u) * 3.96);
+  color: var(--color-danger);
+  cursor: pointer;
+  touch-action: manipulation;
+  z-index: 5;
+}
+.pill--surrender:active { transform: scale(0.97); }
+
+/* 右上: ステージ表示とストップウォッチ */
+.pill--stage {
+  right: calc(var(--u) * 2.84);
+  top: calc(var(--u) * 2.84);
+  width: calc(var(--u) * 12.5);
+  height: calc(var(--u) * 3.96);
+}
+.page-battle .pill--timer {
+  top: calc(var(--u) * 7.7);
+  height: calc(var(--u) * 5.3);
+}
+
+/* 左: ハートと縦型の好感度ゲージ */
+.heart {
+  position: absolute;
+  left: calc(var(--u) * 2.84);
+  top: calc(var(--u) * 14);
+  width: calc(var(--u) * 4.1);
+  height: calc(var(--u) * 3.6);
+}
+.heart svg { display: block; width: 100%; height: 100%; }
+
+.gauge {
+  position: absolute;
+  left: calc(var(--u) * 2.84);
+  top: calc(var(--u) * 18.5);
+  width: calc(var(--u) * 4.1);
+  height: calc(var(--u) * 32.3);
+  background: #fff;
+  border: calc(var(--u) * 0.2) solid #1d1424;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.gauge__fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0%;                  /* JSが好感度の割合(%)で更新する */
+  background: var(--color-pink);
+  transition: height 0.12s ease-out;
+}
+
+/* 中央: キャラクター(会話画面と同じ表示枠) */
+.page-battle .character { z-index: 1; }
+
+/* 右: 告白成功率(好感度MAX後に表示) */
+.rate {
+  position: absolute;
+  right: calc(var(--u) * 2.84);
+  top: calc(var(--u) * 17);
+  width: calc(var(--u) * 22);
+  padding: calc(var(--u) * 0.8) 0 calc(var(--u) * 1);
+  text-align: center;
+  background: rgba(255, 245, 248, 0.88);
+  border: calc(var(--u) * 0.25) solid var(--color-pink-line);
+  border-radius: calc(var(--u) * 2);
+  z-index: 3;
+}
+.rate__label { font-size: calc(var(--u) * 2.1); font-weight: 800; color: var(--color-sub); }
+.rate__value {
+  font-size: calc(var(--u) * 9.5);
+  line-height: 1.05;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-pink-strong);
+}
+.rate__unit { font-size: calc(var(--u) * 4); font-weight: 900; margin-left: calc(var(--u) * 0.3); }
+.rate--low .rate__value { color: #9a8aa6; } /* 成功率が低いとき(目安: 20%未満)は色を落とす */
+
+/* 下部: セリフ欄 */
+.page-battle .msgbox {
+  left: calc(var(--u) * 12.2);
+  top: calc(var(--u) * 36.7);
+  width: calc(var(--u) * 75.7);
+  height: calc(var(--u) * 14.1);
+  z-index: 2;
+}
+
+/* 下部: アタック/告白ボタン */
+.action-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--u) * 52.6);
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--u) * 2.4);
+  z-index: 4;
+}
+.btn-action {
+  width: calc(var(--u) * 30.6);
+  height: calc(var(--u) * 10.2);
+  font-size: calc(var(--u) * 4);
+  border-width: calc(var(--u) * 0.25);
+  box-shadow: 0 calc(var(--u) * 0.4) calc(var(--u) * 1) rgba(120, 60, 90, 0.2);
+}
+.btn-action--confess {
+  color: #fff;
+  background: linear-gradient(180deg, #f0679f 0%, #d93a82 100%);
+  border-color: #fff;
+}
+.btn-action--confess:hover { filter: brightness(1.04); }

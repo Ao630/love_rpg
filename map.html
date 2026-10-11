@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ステージ移動 - 恋愛RPG</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/story.css">
+</head>
+<body class="page-story page-map">
+  <!--
+    ステージ移動画面(全3ステージのうち、どこまで進んだかを表示)
+    ・表示条件: 進行ステップが map のとき
+    ・「すすむ」 → talk.html(次の相手との戦闘前の会話)
+    ・丸とハートは js/pages/map.js が、totalStages の数だけ作って配置する
+  -->
+  <main class="viewport">
+    <div class="stage" id="stage">
+      <div class="pill pill--timer" id="timer">00:00:00</div>
+      <h1 class="map-title" id="map-title"></h1>
+      <p class="map-opponent" id="map-opponent" hidden></p>
+      <div class="map-track" id="map-track">
+        <div class="map-track__line"></div>
+        <div class="map-marker" id="map-marker" aria-hidden="true">♥</div>
+      </div>
+      <button id="btn-next" class="btn map-next" type="button">すすむ</button>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/data/characters.js"></script>
+  <script src="js/data/scenario.js"></script>
+  <script src="js/core/util.js"></script>
+  <script src="js/core/characters.js"></script>
+  <script src="js/core/state.js"></script>
+  <script src="js/core/timer.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/pages/map.js"></script>
+</body>
+</html>

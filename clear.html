@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>クリア - 恋愛RPG</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/result.css">
+</head>
+<body class="page-result page-clear">
+  <!--
+    クリア画面
+    ・表示条件: 進行ステップが clear のとき
+    ・タイムは、ラスボスに告白成功した時点で停止した最終タイム(state.js の finishedAt)
+    ・「タイトルに戻る」 → index.html
+  -->
+  <main class="viewport">
+    <div class="stage">
+      <h1 class="result-heading">クリアおめでとう！！</h1>
+      <p class="result-text" id="clear-time"></p>
+      <button id="btn-title" class="btn result-back" type="button">タイトルに戻る</button>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/data/characters.js"></script>
+  <script src="js/data/scenario.js"></script>
+  <script src="js/core/util.js"></script>
+  <script src="js/core/characters.js"></script>
+  <script src="js/core/state.js"></script>
+  <script src="js/core/timer.js"></script>
+  <script src="js/pages/clear.js"></script>
+</body>
+</html>
