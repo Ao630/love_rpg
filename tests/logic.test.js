@@ -60,25 +60,7 @@ class Player {
 
 const seqRng = (values) => { let i = 0; return () => values[i++ % values.length]; };
 const makeChar = (id) => ({ id, name: '', images: { normal: '', high: '' }, voices: { normal: [], high: [] },
-  lines: { normal: [], high: [] }, talk: { before: [
-    '一人目のセリフ',
-    '2ページ目のセリフ',
-    '3ページ目のセリフ',
-    '4ページ目のセリフ',
-    '5ページ目のセリフ'
-  ], afterSuccess: [
-    '一人目勝ちのセリフ',
-    '2ページ目のセリフ',
-    '3ページ目のセリフ',
-    '4ページ目のセリフ',
-    '5ページ目のセリフ'
-  ], afterFail: [
-    '一人目負けのセリフ',
-    '2ページ目のセリフ',
-    '3ページ目のセリフ',
-    '4ページ目のセリフ',
-    '5ページ目のセリフ'
-  ] } });
+  lines: { normal: [], high: [] }, talk: { before: [], afterSuccess: [], afterFail: [] } });
 
 console.log('■ 好感度ゲージ');
 {
