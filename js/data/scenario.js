@@ -16,7 +16,13 @@
   'use strict';
 
   global.SCENARIO_DATA = {
-    intro: [],           // ← 導入の独白(未提供)
+    intro: [
+      '1ページ目のセリフ',
+      '2ページ目のセリフ',
+      '3ページ目のセリフ',
+      '4ページ目のセリフ',
+      '5ページ目のセリフ'
+    ],           // ← 導入の独白(未提供)
     defeatComments: []   // ← 敗北画面の一言コメント(未提供)
   };
 })(typeof window !== 'undefined' ? window : globalThis);
