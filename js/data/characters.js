@@ -40,7 +40,19 @@
         images: { normal: '', high: '' },           // ← 画像1(通常) / 画像2(好感度が半分超え)
         voices: { normal: [], high: [] },           // ← 音声のパス(例: ['assets/audio/girl01-v1.mp3'])
         lines:  { normal: [], high: [] },           // ← セリフ(例: ['セリフ1', 'セリフ2'])
-        talk:   { before: [], afterSuccess: [], afterFail: [] } // ← 会話画面のセリフ
+        talk:   { before: [
+      '01のセリフ',
+      '2ページ目のセリフ',
+      '3ページ目のセリフ'
+    ],
+    afterSuccess: [
+      '01勝ちのセリフ',
+      '2ページ目のセリフ'
+    ],
+    afterFail: [
+      '01負けのセリフ',
+      '2ページ目のセリフ'
+    ] } // ← 会話画面のセリフ
       },
       {
         id: 'girl02',
@@ -48,7 +60,19 @@
         images: { normal: '', high: '' },
         voices: { normal: [], high: [] },
         lines:  { normal: [], high: [] },
-        talk:   { before: [], afterSuccess: [], afterFail: [] }
+        talk:   { before: [
+      '02のセリフ',
+      '2ページ目のセリフ',
+      '3ページ目のセリフ'
+    ],
+    afterSuccess: [
+      '02勝ちのセリフ',
+      '2ページ目のセリフ'
+    ],
+    afterFail: [
+      '02負けのセリフ',
+      '2ページ目のセリフ'
+    ] }
       },
       {
         id: 'girl03',
@@ -56,7 +80,19 @@
         images: { normal: '', high: '' },
         voices: { normal: [], high: [] },
         lines:  { normal: [], high: [] },
-        talk:   { before: [], afterSuccess: [], afterFail: [] }
+        talk:   { before: [
+      '03のセリフ',
+      '2ページ目のセリフ',
+      '3ページ目のセリフ'
+    ],
+    afterSuccess: [
+      '03勝ちのセリフ',
+      '2ページ目のセリフ'
+    ],
+    afterFail: [
+      '03負けのセリフ',
+      '2ページ目のセリフ'
+    ] }
       }
     ],
 
@@ -67,7 +103,19 @@
       images: { normal: '', high: '' },
       voices: { normal: [], high: [] },
       lines:  { normal: [], high: [] },
-      talk:   { before: [], afterSuccess: [], afterFail: [], epilogue: [] }
+      talk:   { before: [
+      'bossのセリフ',
+      '2ページ目のセリフ',
+      '3ページ目のセリフ'
+    ],
+    afterSuccess: [
+      'boss勝ちのセリフ',
+      '2ページ目のセリフ'
+    ],
+    afterFail: [
+      'boss負けのセリフ',
+      '2ページ目のセリフ'
+    ], epilogue: [] }
     }
   };
 })(typeof window !== 'undefined' ? window : globalThis);
