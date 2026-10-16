@@ -36,8 +36,8 @@
     normal: [
       {
         id: 'girl01',
-        name: '',                                   // ← 名前
-        images: { normal: '', high: '' },           // ← 画像1(通常) / 画像2(好感度が半分超え)
+        name: 'サノス',                                   // ← 名前
+        images: { normal: 'assets/images/girl01-1.png', high: '' },           // ← 画像1(通常) / 画像2(好感度が半分超え)
         voices: { normal: [], high: [] },           // ← 音声のパス(例: ['assets/audio/girl01-v1.mp3'])
         lines:  { normal: [], high: [] },           // ← セリフ(例: ['セリフ1', 'セリフ2'])
         talk:   { before: [
@@ -56,8 +56,8 @@
       },
       {
         id: 'girl02',
-        name: '',
-        images: { normal: '', high: '' },
+        name: 'あう',
+        images: { normal: 'assets/images/girl02-1.png', high: '' },
         voices: { normal: [], high: [] },
         lines:  { normal: [], high: [] },
         talk:   { before: [
@@ -76,8 +76,8 @@
       },
       {
         id: 'girl03',
-        name: '',
-        images: { normal: '', high: '' },
+        name: 'うんｔ',
+        images: { normal: 'assets/images/girl03-1.png', high: '' },
         voices: { normal: [], high: [] },
         lines:  { normal: [], high: [] },
         talk:   { before: [
@@ -99,8 +99,8 @@
     // ---------- ラスボス(固定。毎回この1人が最終ステージの相手) ----------
     boss: {
       id: 'boss',
-      name: '',
-      images: { normal: '', high: '' },
+      name: 'ぼっす',
+      images: { normal: 'assets/images/boss00-1.png', high: '' },
       voices: { normal: [], high: [] },
       lines:  { normal: [], high: [] },
       talk:   { before: [
