@@ -63,6 +63,7 @@
         </label>
         <button type="button" id="reset-button">リセット</button>
       </p>
+      <p id="enemy-note" class="message"></p>
 
       <div id="battle-area">
         <div id="enemy-image-box"><img id="enemy-image" src="" alt="" hidden></div>
@@ -85,9 +86,8 @@
     </section>
   </main>
 
-  <!-- 読み込み順：キャラクター登録データ → デバッグ処理 -->
-  <script src="data/characters.js"></script>
-  <script src="debug.js"></script>
+  <!-- 敵の一覧は debug.js 内に入っているので、このファイルだけで動く -->
+    <script src="debug.js"></script>
   <script>
     // 読み込み失敗・実行エラーを画面に出す（「何も起こらない」を防ぐ）
     function showDebugError(text) {
@@ -99,7 +99,6 @@
     });
     window.addEventListener("load", function () {
       if (!window.__debugLoaded) showDebugError("debug.js が読み込めていません。debug.html と同じ場所に debug.js があるか確認してください。");
-      else if (typeof NORMAL_CHARACTERS === "undefined") showDebugError("data/characters.js が読み込めていません。data フォルダの場所を確認してください。");
     });
   </script>
 </body>
