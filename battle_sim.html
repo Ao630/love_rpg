@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+  battle_sim.html : 戦闘シミュレーション（デバッグ専用）
+  - ゲーム本体の画面ではなく、この画面の中だけで戦闘を試す。設定値は画面上で自由に変えられる。
+  - 検索窓にURL（…/battle_sim.html）を入れるか、debug.html の「戦闘シミュレーション」ボタンで開く。
+  - 設定の初期値・パスワードは debug_common.js の先頭 DEBUG_CONFIG にある。
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>戦闘シミュレーション</title>
+  <link rel="stylesheet" href="debug.css">
+</head>
+<body>
+  <h1>戦闘シミュレーション</h1>
+  <p><a href="debug.html">← デバッグページへ</a></p>
+
+  <!-- パスワード入力（デバッグページで入力済みなら表示されない） -->
+  <section id="login-area">
+    <form id="login-form">
+      <label>パスワード <input type="password" id="password-input" autocomplete="off"></label>
+      <button type="submit">入る</button>
+    </form>
+    <p id="login-message" class="message"></p>
+  </section>
+
+  <main id="tools-area" hidden>
+    <p><button type="button" id="logout-button">ログアウト</button></p>
+
+    <section>
+      <h2>設定</h2>
+      <p>数値を変えて「この設定でやり直す」を押すと反映されます。</p>
+      <fieldset>
+        <legend>好感度フェーズ</legend>
+        <label>好感度の最大値 <input type="number" id="cfg-loveMax" step="any"></label>
+        <label>アタック1回の好感度増加 <input type="number" id="cfg-loveInc" step="any"></label>
+      </fieldset>
+      <fieldset>
+        <legend>告白成功率フェーズ</legend>
+        <label>成功率の初期値(%) <input type="number" id="cfg-rateInit" step="any"></label>
+        <label>アタック1回の成功率増加(%) <input type="number" id="cfg-rateInc" step="any"></label><br>
+        <label>成功率の自然減少(%/秒) <input type="number" id="cfg-rateDecay" step="any"></label>
+        <label>成功率の下限(%) <input type="number" id="cfg-rateMin" step="any"></label>
+        <label>成功率の上限(%) <input type="number" id="cfg-rateMax" step="any"></label>
+      </fieldset>
+      <p>
+        <label>敵を選ぶ <select id="enemy-select"></select></label>
+        <button type="button" id="reset-button">この設定でやり直す</button>
+        <button type="button" id="default-button">初期値に戻す</button>
+      </p>
+    </section>
+
+    <section>
+      <h2>戦闘</h2>
+      <div id="enemy-image-box"><img id="enemy-image" src="" alt="" hidden></div>
+      <p>敵: <span id="enemy-name">-</span></p>
+      <p>フェーズ: <span id="phase-label">-</span></p>
+      <p>好感度: <span id="love-text">0 / 0</span>
+        <progress id="love-gauge" value="0" max="1"></progress></p>
+      <p>告白成功率: <span id="rate-text">-</span></p>
+      <p>セリフ: <span id="line-text"></span></p>
+      <p>
+        <button type="button" id="attack-button">アタックする</button>
+        <button type="button" id="confess-button" hidden>告白しろ！！！</button>
+      </p>
+      <p>
+        <button type="button" id="max-love-button">（近道）好感度MAX</button>
+        <button type="button" id="max-rate-button">（近道）成功率を上限に</button>
+      </p>
+      <p id="result-text" class="message"></p>
+    </section>
+
+    <section>
+      <h2>集計</h2>
+      <p>告白 <span id="tally-total">0</span>回：成功 <span id="tally-success">0</span> / 失敗 <span id="tally-fail">0</span>
+        <button type="button" id="tally-reset-button">集計をリセット</button></p>
+    </section>
+  </main>
+
+  <script src="debug_common.js"></script>
+  <script src="battle_sim.js"></script>
+  <script>
+    function showDebugError(text) {
+      var m = document.getElementById("login-message");
+      if (m) m.textContent = text;
+    }
+    window.addEventListener("error", function (e) {
+      showDebugError("エラー: " + (e.message || "読み込みに失敗しました") + (e.filename ? " (" + e.filename.split("/").pop() + ")" : ""));
+    });
+    window.addEventListener("load", function () {
+      if (!window.__debugCommonLoaded) showDebugError("debug_common.js が読み込めていません。battle_sim.html と同じ場所に置いてください。");
+      else if (!window.__battleSimLoaded) showDebugError("battle_sim.js が読み込めていません。battle_sim.html と同じ場所に置いてください。");
+    });
+  </script>
+</body>
+</html>

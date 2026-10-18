@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+  debug.html : 開発用デバッグページ
+  - どこからもリンクしない。検索窓にURL（…/debug.html）を直接入力してアクセスする。
+  - パスワードを入力すると「ページ移動」が表示される。戦闘テストは battle_sim.html（別ページ）で行う。
+  - パスワード・ページ一覧は debug_common.js の先頭 DEBUG_CONFIG にまとめてある。
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow"><!-- 検索エンジンに載せない -->
+  <title>デバッグ用ページ</title>
+  <link rel="stylesheet" href="debug.css">
+</head>
+<body>
+  <h1>デバッグ用ページ</h1>
+
+  <!-- パスワード入力（認証前はこれだけ表示） -->
+  <section id="login-area">
+    <form id="login-form">
+      <label>パスワード <input type="password" id="password-input" autocomplete="off"></label>
+      <button type="submit">入る</button>
+    </form>
+    <p id="login-message" class="message"></p>
+  </section>
+
+  <!-- 認証後に表示される本体 -->
+  <main id="tools-area" hidden>
+    <p><button type="button" id="logout-button">ログアウト</button></p>
+
+    <section>
+      <h2>ページ移動</h2>
+      <div id="page-links"></div>
+      <form id="jump-form">
+        <label>URL / ファイル名
+          <input type="text" id="jump-input" placeholder="例: index.html" size="30">
+        </label>
+        <button type="submit">移動</button>
+      </form>
+      <p id="jump-message" class="message"></p>
+    </section>
+  </main>
+
+  <script src="debug_common.js"></script>
+  <script src="debug.js"></script>
+  <script>
+    // 読み込み失敗・実行エラーを画面に出す（「何も起こらない」を防ぐ）
+    function showDebugError(text) {
+      var m = document.getElementById("login-message");
+      if (m) m.textContent = text;
+    }
+    window.addEventListener("error", function (e) {
+      showDebugError("エラー: " + (e.message || "読み込みに失敗しました") + (e.filename ? " (" + e.filename.split("/").pop() + ")" : ""));
+    });
+    window.addEventListener("load", function () {
+      if (!window.__debugCommonLoaded) showDebugError("debug_common.js が読み込めていません。debug.html と同じ場所に置いてください。");
+      else if (!window.__debugPageLoaded) showDebugError("debug.js が読み込めていません。debug.html と同じ場所に置いてください。");
+    });
+  </script>
+</body>
+</html>
