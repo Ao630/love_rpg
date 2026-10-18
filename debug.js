@@ -114,14 +114,19 @@ function clamp(value, min, max) {
 // ============================================================
 // 認証
 // ============================================================
+// 保存先が使えない環境（プライベートモード等）でも動くよう、メモリ上の印も併用する
+let authedInMemory = false;
+
 function isAuthed() {
+  if (authedInMemory) return true;
   try { return sessionStorage.getItem(AUTH_KEY) === "1"; } catch (e) { return false; }
 }
 
 function setAuthed(flag) {
+  authedInMemory = flag;
   try {
     if (flag) sessionStorage.setItem(AUTH_KEY, "1"); else sessionStorage.removeItem(AUTH_KEY);
-  } catch (e) { /* 保存できない環境では毎回入力が必要になるだけ */ }
+  } catch (e) { /* 保存できない環境では、ページを開き直すと再入力が必要になるだけ */ }
 }
 
 // 認証状態に合わせて表示を切り替える
@@ -196,11 +201,31 @@ const battle = {
   timerId: null // 成功率を下げるタイマー
 };
 
-// 選べる敵の一覧（通常ステージ候補 + ラスボス）。data/characters.js で定義されたもの。
+// 予備の敵一覧。js/data/characters.js が読み込めない／空のときだけ使う（デバッグ専用）
+const FALLBACK_ENEMIES = [
+  { id: "girl01", name: "", imageNormal: "assets/images/characters/girl01_normal.png", imageLove: "", voices: [], lines: [], isBoss: false },
+  { id: "girl02", name: "", imageNormal: "assets/images/characters/girl02_normal.png", imageLove: "", voices: [], lines: [], isBoss: false },
+  { id: "girl03", name: "", imageNormal: "assets/images/characters/girl03_normal.png", imageLove: "", voices: [], lines: [], isBoss: false },
+  { id: "boss01", name: "", imageNormal: "assets/images/characters/boss01_normal.png", imageLove: "", voices: [], lines: [], isBoss: true }
+];
+
+// 敵の一覧がどこから来たか（画面表示用）
+let enemySourceNote = "";
+
+// 選べる敵の一覧。通常は js/data/characters.js（通常ステージ候補 + ラスボス）。使えなければ予備を使う
 function getAllEnemies() {
-  const normals = typeof NORMAL_CHARACTERS !== "undefined" ? NORMAL_CHARACTERS : [];
-  const boss = typeof BOSS_CHARACTER !== "undefined" ? [BOSS_CHARACTER] : [];
-  return normals.concat(boss);
+  let list = [];
+  try {
+    const normals = (typeof NORMAL_CHARACTERS !== "undefined" && Array.isArray(NORMAL_CHARACTERS)) ? NORMAL_CHARACTERS : [];
+    const boss = (typeof BOSS_CHARACTER !== "undefined" && BOSS_CHARACTER && BOSS_CHARACTER.id) ? [BOSS_CHARACTER] : [];
+    list = normals.concat(boss).filter((e) => e && e.id);
+  } catch (err) { list = []; }
+  if (list.length > 0) {
+    enemySourceNote = "";
+    return list;
+  }
+  enemySourceNote = "";
+  return FALLBACK_ENEMIES;
 }
 
 function fillEnemySelect() {
@@ -212,6 +237,7 @@ function fillEnemySelect() {
     option.textContent = (enemy.isBoss ? "【ラスボス】" : "") + (enemy.name || enemy.id);
     select.appendChild(option);
   });
+  $("enemy-note").textContent = enemySourceNote;
 }
 
 // 設定欄に初期値を入れる
