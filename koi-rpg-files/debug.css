@@ -1,0 +1,11 @@
+/* debug.css : デバッグページ用の最低限の見た目（凝らない） */
+body { font-family: sans-serif; max-width: 640px; margin: 0 auto; padding: 12px; }
+section { border-top: 1px solid #ccc; margin-top: 16px; padding-top: 8px; }
+fieldset label { display: inline-block; margin: 2px 8px 2px 0; }
+fieldset input { width: 5em; }
+button { padding: 8px 12px; margin: 2px; touch-action: manipulation; }
+#page-links button { display: inline-block; }
+#enemy-image-box { height: 220px; text-align: center; }
+#enemy-image { max-height: 220px; max-width: 100%; }
+#love-gauge { width: 200px; vertical-align: middle; }
+.message { color: #b00020; }
