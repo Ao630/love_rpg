@@ -24,7 +24,7 @@
       id: str(raw.id),
       name: str(raw.name),
       isBoss: !!isBoss,
-      images: { normal: str(img.normal), high: str(img.high) },
+      images: { normal: str(img.normal), high: str(img.high), max: str(img.max) },
       voices: { normal: onlyStrings(vo.normal), high: onlyStrings(vo.high) },
       lines: { normal: onlyStrings(li.normal), high: onlyStrings(li.high) },
       talk: {
