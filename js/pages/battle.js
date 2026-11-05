@@ -37,6 +37,7 @@
 
   var tickIntervalId = null; // 成功率の減少タイマー(不要になったら必ず止める)
   var lastTickAt = 0;
+  var reachedMax = false;    // 好感度がMAXに達したか(true の間は MAX用の画像を表示する)
 
   // ---------- 初期表示 ----------
   Ui.applyBackground(stageEl, config.assets.backgrounds.classroom);
@@ -48,9 +49,13 @@
   /** いまのモード('normal' = 好感度が半分以下 / 'high' = 半分を上回った後) */
   function mode() { return battle.isHigh() ? 'high' : 'normal'; }
 
-  /** キャラクター画像をモードに合わせて表示する(後半用の画像が未設定なら通常画像のまま) */
+  /**
+   * キャラクター画像を状態に合わせて表示する。
+   * 優先順位: MAX用(max) → 半分超え用(high) → 通常(normal)。
+   * 該当する画像が未設定なら、ひとつ前の段階の画像のままにする。
+   */
   function showCharacter() {
-    var path = character.images[mode()] || character.images.normal;
+    var path = (reachedMax && character.images.max) || character.images[mode()] || character.images.normal;
     Ui.showCharacterImage(imgEl, placeholderEl, path);
   }
 
@@ -93,7 +98,8 @@
   attackBtn.addEventListener('click', function () {
     var result = battle.attack();
     if (result.type === 'none') { return; } // 判定後などの無効な入力は無視
-    if (result.crossedHigh) { showCharacter(); }
+    if (result.reachedMax) { reachedMax = true; }
+    if (result.crossedHigh || result.reachedMax) { showCharacter(); }
     speak();
     render();
     if (result.reachedMax) { enterConfessionPhase(); }
