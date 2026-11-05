@@ -15,7 +15,7 @@
  * 【各項目の意味】
  *   id        : キャラクターごとに重ならない英数字のID(必須。空にすると無視されます)
  *   name      : 名前(未提供なら空欄)
- *   images    : normal = 通常時の画像 / high = 好感度が半分を超えた後の画像
+ *    *   images    : normal = 通常時 / high = 好感度が半分を超えた後 / max = 好感度MAX後(max は未設定でもOK)
  *   voices    : normal / high それぞれの音声ファイルのパスの配列(ボタンを押すたびにランダムに1つ再生)
  *   lines     : normal / high それぞれのセリフの配列(ボタンを押すたびにランダムに1つ表示)
  *   talk      : 会話画面のセリフ。配列の1要素 = 1回のタップで表示される1ページ
@@ -37,7 +37,7 @@
       {
         id: 'girl01',
         name: 'サノス',                                   // ← 名前
-        images: { normal: 'assets/images/girl01-1.png', high: 'assets/images/girl01-2.png' },           // ← 画像1(通常) / 画像2(好感度が半分超え)
+        images: { normal: 'assets/images/girl01-1.png', high: 'assets/images/girl01-2.png', max: 'assets/images/girl01-3.png' },  // ← 画像1(通常) / 画像2(半分超え) / 画像3(好感度MAX)
         voices: { normal: [], high: [] },           // ← 音声のパス(例: ['assets/audio/girl01-v1.mp3'])
         lines:  { normal: ['うん？', 'はじめまして？'], high: ['え//', 'うん❤️'] },           // ← セリフ(例: ['セリフ1', 'セリフ2'])
         talk:   { before: [
@@ -57,7 +57,7 @@
       {
         id: 'girl02',
         name: 'あう',
-        images: { normal: 'assets/images/girl02-1.png', high: '' },
+        images: { normal: 'assets/images/girl02-1.png', high: '', max: '' },
         voices: { normal: [], high: [] },
         lines:  { normal: [], high: [] },
         talk:   { before: [
@@ -77,7 +77,7 @@
       {
         id: 'girl03',
         name: 'うんｔ',
-        images: { normal: 'assets/images/girl03-1.png', high: '' },
+        images: { normal: 'assets/images/girl03-1.png', high: '', max: '' },
         voices: { normal: [], high: [] },
         lines:  { normal: [], high: [] },
         talk:   { before: [
@@ -100,7 +100,7 @@
     boss: {
       id: 'boss',
       name: 'ぼっす',
-      images: { normal: 'assets/images/boss00-1.png', high: '' },
+      images: { normal: 'assets/images/boss00-1.png', high: '', max: '' },
       voices: { normal: [], high: [] },
       lines:  { normal: [], high: [] },
       talk:   { before: [
