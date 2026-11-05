@@ -38,8 +38,8 @@
         id: 'girl01',
         name: 'サノス',                                   // ← 名前
         images: { normal: 'assets/images/girl01-1.png', high: 'assets/images/girl01-2.png', max: 'assets/images/girl01-3.png' },  // ← 画像1(通常) / 画像2(半分超え) / 画像3(好感度MAX)
-        voices: { normal: [], high: [] },           // ← 音声のパス(例: ['assets/audio/girl01-v1.mp3'])
-        lines:  { normal: ['うん？', 'はじめまして？'], high: ['え//', 'うん❤️'] },           // ← セリフ(例: ['セリフ1', 'セリフ2'])
+        voices: { normal: [], high: [], max: [] },           // ← 音声のパス(例: ['assets/audio/girl01-v1.mp3'])
+        lines:  { normal: ['うん？', 'はじめまして？'], high: ['え//', 'うん❤️'], max: [] },           // ← セリフ(例: ['セリフ1', 'セリフ2'])
         talk:   { before: [
       '01のセリフ',
       '2ページ目のセリフ',
@@ -58,8 +58,8 @@
         id: 'girl02',
         name: 'あう',
         images: { normal: 'assets/images/girl02-1.png', high: '', max: '' },
-        voices: { normal: [], high: [] },
-        lines:  { normal: [], high: [] },
+        voices: { normal: [], high: [], max: [] },
+        lines:  { normal: [], high: [], max: [] },
         talk:   { before: [
       '02のセリフ',
       '2ページ目のセリフ',
@@ -78,8 +78,8 @@
         id: 'girl03',
         name: 'うんｔ',
         images: { normal: 'assets/images/girl03-1.png', high: '', max: '' },
-        voices: { normal: [], high: [] },
-        lines:  { normal: [], high: [] },
+        voices: { normal: [], high: [], max: [] },
+        lines:  { normal: [], high: [], max: [] },
         talk:   { before: [
       '03のセリフ',
       '2ページ目のセリフ',
@@ -101,8 +101,8 @@
       id: 'boss',
       name: 'ぼっす',
       images: { normal: 'assets/images/boss00-1.png', high: '', max: '' },
-      voices: { normal: [], high: [] },
-      lines:  { normal: [], high: [] },
+      voices: { normal: [], high: [], max: [] },
+      lines:  { normal: [], high: [], max: [] },
       talk:   { before: [
       'bossのセリフ',
       '2ページ目のセリフ',
