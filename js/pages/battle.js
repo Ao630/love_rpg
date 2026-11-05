@@ -70,11 +70,21 @@
     ratePanelEl.classList.toggle('rate--low', rate < 20);
   }
 
+  /**
+   * 好感度MAX後は max のセリフ・音声を使う。
+   * max が空欄(未設定)なら、今までどおり high(半分超え)の内容をそのまま使う。
+   */
+  function pickPool(group) {
+    var maxList = group.max;
+    if (reachedMax && Array.isArray(maxList) && maxList.length > 0) { return maxList; }
+    return group[mode()];
+  }
+
   /** アタックのたびに、ランダムなセリフを表示し、ランダムな音声を再生する(未設定ならスキップ) */
   function speak() {
-    var line = Util.pickRandom(character.lines[mode()]);
+    var line = Util.pickRandom(pickPool(character.lines));
     if (line !== null) { msgEl.textContent = line; }
-    Voice.playRandom(character.voices[mode()]);
+    Voice.playRandom(pickPool(character.voices));
   }
 
   /** 好感度MAX: 成功率の表示と告白ボタンを出し、成功率の自然減少を始める */
