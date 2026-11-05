@@ -39,7 +39,7 @@
         name: 'サノス',                                   // ← 名前
         images: { normal: 'assets/images/girl01-1.png', high: 'assets/images/girl01-2.png' },           // ← 画像1(通常) / 画像2(好感度が半分超え)
         voices: { normal: [], high: [] },           // ← 音声のパス(例: ['assets/audio/girl01-v1.mp3'])
-        lines:  { normal: [], high: [] },           // ← セリフ(例: ['セリフ1', 'セリフ2'])
+        lines:  { normal: ['うん？', 'はじめまして？'], high: ['え//', 'うん❤️'] },           // ← セリフ(例: ['セリフ1', 'セリフ2'])
         talk:   { before: [
       '01のセリフ',
       '2ページ目のセリフ',
