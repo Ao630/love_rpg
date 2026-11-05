@@ -25,8 +25,8 @@
       name: str(raw.name),
       isBoss: !!isBoss,
       images: { normal: str(img.normal), high: str(img.high), max: str(img.max) },
-      voices: { normal: onlyStrings(vo.normal), high: onlyStrings(vo.high) },
-      lines: { normal: onlyStrings(li.normal), high: onlyStrings(li.high) },
+      voices: { normal: onlyStrings(vo.normal), high: onlyStrings(vo.high), max: onlyStrings(vo.max) },
+      lines: { normal: onlyStrings(li.normal), high: onlyStrings(li.high), max: onlyStrings(li.max) },
       talk: {
         before: onlyStrings(ta.before),
         afterSuccess: onlyStrings(ta.afterSuccess),
