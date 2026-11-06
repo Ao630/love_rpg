@@ -57,7 +57,7 @@
       {
         id: 'girl02',
         name: 'あう',
-        images: { normal: 'assets/images/girl02-1.png', high: '', max: '' },
+        images: { normal: 'assets/images/girl02-1.png', high: 'assets/images/girl02-2.png', max: 'assets/images/girl02-3.png' },
         voices: { normal: [], high: [], max: [] },
         lines:  { normal: [], high: [], max: [] },
         talk:   { before: [
