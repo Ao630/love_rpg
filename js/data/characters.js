@@ -77,7 +77,7 @@
       {
         id: 'girl03',
         name: 'うんｔ',
-        images: { normal: 'assets/images/girl03-1.png', high: '', max: '' },
+        images: { normal: 'assets/images/girl03-1.png', high: 'assets/images/girl03-2.png', max: 'assets/images/girl03-3.png' },
         voices: { normal: [], high: [], max: [] },
         lines:  { normal: [], high: [], max: [] },
         talk:   { before: [
