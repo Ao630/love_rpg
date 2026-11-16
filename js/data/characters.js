@@ -71,7 +71,7 @@
         id: 'girl02',
         name: '花野 ひより',
         images: { normal: 'assets/images/girl02-1.png', high: 'assets/images/girl02-2.png', max: 'assets/images/girl02-3.png' },
-        voices: { normal: ['assets/audio/girl01-v1.mp3'], high: [], max: [] },
+        voices: { normal: [], high: [], max: [] },
         lines: {
           normal: [
             'あ、あの…何でしょうか…', 'ひゃっ…！', '図書室では静かに…お願いします', 'え、えっと…こんにちは…',
