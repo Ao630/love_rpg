@@ -100,7 +100,7 @@
     boss: {
       id: 'boss',
       name: 'ぼっす',
-      images: { normal: 'assets/images/boss00-1.png', high: '', max: '' },
+      images: { normal: 'assets/images/boss00-1.png', high: 'assets/images/boss00-2.png', max: 'assets/images/boss00-3.png' },
       voices: { normal: [], high: [], max: [] },
       lines:  { normal: [], high: [], max: [] },
       talk:   { before: [
